@@ -1,0 +1,11 @@
+Source: xivo-consul-cli-packaging
+Section: utils
+Priority: optional
+Maintainer: XiVO Dev Team <dev@avencall.com>
+Build-Depends: debhelper, golang-go
+
+Package: consul-cli
+Architecture: any
+Description: Command line interface to Consul HTTP API
+ Command line interface to Consul HTTP API
+ .

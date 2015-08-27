@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+override_dh_auto_build:
+	./fetch_src.sh
+	export GOPATH=$(CURDIR) && $(MAKE) -C tmp/consul-cli
+
+%:
+	dh $@
+
+.PHONY: build
