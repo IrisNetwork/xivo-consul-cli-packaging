@@ -1,5 +1,5 @@
-#!/bin/sh
-# Copyright (C) 2016 Avencall
+
+#!/bin/bash
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,12 +16,23 @@
 
 set -e
 
+ARCH=${DEB_BUILD_ARCH}
+if [ "${DEB_BUILD_ARCH}" = "386" ]
+then
+    ARCH=386
+elif [ "${DEB_BUILD_ARCH}" = "armhf" ]
+then
+    ARCH=arm
+fi
+
 VERSION=$(cat VERSION)
-URL="https://github.com/CiscoCloud/consul-cli.git"
+
+URL="https://github.com/CiscoCloud/consul-cli/releases/download/v${VERSION}/consul-cli_${VERSION}_linux_${ARCH}.tar.gz"
 
 rm -rf tmp
 mkdir tmp
 cd tmp
 
-git clone ${URL} ${VERSION}
-mv ${VERSION} consul-cli
+wget -nv "${URL}"
+tar xzf "consul-cli_${VERSION}_linux_${ARCH}.tar.gz"
+mv consul-cli_*_linux_*/consul-cli consul-cli

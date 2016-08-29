@@ -5,8 +5,7 @@
 #export DH_VERBOSE=1
 
 override_dh_auto_build:
-	./fetch_src.sh
-	export GOPATH=$(CURDIR) && $(MAKE) -C tmp/consul-cli
+	./fetch_binary.sh
 
 %:
 	dh $@
